@@ -31,9 +31,9 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 
 === "OC"
 
-    ```bash
-    oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/
-    ```
+```bash
+oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/
+```
 
 ## Optional: Deploy OpenShift Console samples
 
@@ -41,9 +41,9 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}console-samples.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}console-samples.yaml
+```
 
 === "console-samples.yaml"
 

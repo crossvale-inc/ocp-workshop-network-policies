@@ -31,9 +31,9 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 
 === "OC"
 
-    `
+    ```bash
     oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/
-    `
+    ```
 
 ## Optional: Deploy OpenShift Console samples
 
@@ -41,7 +41,7 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}console-samples.yaml
     ```
 
@@ -73,7 +73,7 @@ sh run-tmux.sh $WILDCARD_DOMAIN
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/monitor/
     ```
 
@@ -88,7 +88,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}01_default-deny-simpson.yaml
     ```
 
@@ -106,7 +106,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}02_allow-from-openshift-ingress-simpson.yaml
     ```
 
@@ -126,7 +126,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}03_allow-same-namespace-simpson.yaml
     ```
 
@@ -145,7 +145,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}04_allow-from-bouviers-to-marge-simpson.yaml
     ```
 
@@ -164,7 +164,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```
+    ```bash
     oc apply -f {{ page.canonical_url }}05_allow-from-burns-simpson.yaml
     ```
 

@@ -31,9 +31,9 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 
 === "OC"
 
-    ```
+    `
     oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/
-    ```
+    `
 
 ## Optional: Deploy OpenShift Console samples
 

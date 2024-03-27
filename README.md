@@ -47,9 +47,9 @@ oc apply -f {{ page.canonical_url }}console-samples.yaml
 
 === "console-samples.yaml"
 
-    ```yaml
+```yaml
     --8<-- "content/networking/network-policy/network-policy-demo/console-samples.yaml"
-    ```
+```
 
 
 ## Start Monitor
@@ -73,9 +73,9 @@ sh run-tmux.sh $WILDCARD_DOMAIN
 
 === "OC"
 
-    ```bash
-    oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/monitor/
-    ```
+```bash
+oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/monitor/
+```
 
 Watch logs:
 
@@ -88,15 +88,15 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}01_default-deny-simpson.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}01_default-deny-simpson.yaml
+```
 
 === "01_default-deny-simpson.yaml"
 
-    ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/01_default-deny-simpson.yaml"
-    ```
+```yaml
+--8<-- "content/networking/network-policy/network-policy-demo/01_default-deny-simpson.yaml"
+```
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![01_default-deny-simpson.png](01_default-deny-simpson.png){ width="640" }
@@ -106,15 +106,15 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}02_allow-from-openshift-ingress-simpson.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}02_allow-from-openshift-ingress-simpson.yaml
+```
 
 === "02_allow-from-openshift-ingress-simpson.yaml"
 
-    ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/02_allow-from-openshift-ingress-simpson.yaml"
-    ```
+```yaml
+--8<-- "content/networking/network-policy/network-policy-demo/02_allow-from-openshift-ingress-simpson.yaml"
+```
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![02_allow-from-openshift-ingress-simpson.png](02_allow-from-openshift-ingress-simpson.png){ width="640" }
@@ -126,15 +126,15 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}03_allow-same-namespace-simpson.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}03_allow-same-namespace-simpson.yaml
+```
 
 === "03_allow-same-namespace-simpson.yaml"
 
-    ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/03_allow-same-namespace-simpson.yaml"
-    ```
+```yaml
+--8<-- "content/networking/network-policy/network-policy-demo/03_allow-same-namespace-simpson.yaml"
+```
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![03_allow-same-namespace-simpson.png](03_allow-same-namespace-simpson.png){ width="640" }
@@ -145,15 +145,15 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}04_allow-from-bouviers-to-marge-simpson.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}04_allow-from-bouviers-to-marge-simpson.yaml
+```
 
 === "04_allow-from-bouviers-to-marge-simpson.yaml"
 
-    ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/04_allow-from-bouviers-to-marge-simpson.yaml"
-    ```
+```yaml
+--8<-- "content/networking/network-policy/network-policy-demo/04_allow-from-bouviers-to-marge-simpson.yaml"
+```
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![04_allow-from-bouviers-to-marge-simpson.png](04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
@@ -164,15 +164,15 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 
 === "OC"
 
-    ```bash
-    oc apply -f {{ page.canonical_url }}05_allow-from-burns-simpson.yaml
-    ```
+```bash
+oc apply -f {{ page.canonical_url }}05_allow-from-burns-simpson.yaml
+```
 
 === "05_allow-from-burns-simpson.yaml"
 
-    ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/05_allow-from-burns-simpson.yaml"
-    ```
+```yaml
+--8<-- "content/networking/network-policy/network-policy-demo/05_allow-from-burns-simpson.yaml"
+```
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![05_allow-from-burns-simpson.png](05_allow-from-burns-simpson.png){ width="640" }

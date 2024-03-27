@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: monitor
+  name: monitor
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: "Service"
+    name: monitor
+    weight: null
+  tls:
+    termination: Edge
+    insecureEdgeTerminationPolicy: Redirect

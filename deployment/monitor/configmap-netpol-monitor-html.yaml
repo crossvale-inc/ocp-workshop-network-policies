@@ -1,0 +1,71 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: netpol-monitor-html
+  namespace: network-policy-demo-monitor
+data:
+  update-html.sh: |-
+    #!/usr/bin/env bash
+
+    read -d '' tpl << _EOF_
+    <!DOCTYPE html>
+    <html lang="en">
+    <meta charset="UTF-8">
+    <title>Network policy connection overview</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="refresh" content="2">
+    <link rel="stylesheet" href="">
+    <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        </style><body>
+    <h1>Network policy connection overview</h1>
+    <table>
+        <tr>
+          <td>
+            <pre>
+    %s
+            </pre>
+          </td>
+          <td>
+            <pre>
+    %s
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <pre>
+    %s
+            </pre>
+
+          </td>
+          <td>
+            <pre>
+    %s
+            </pre>
+
+          </td>
+        </tr>
+      </table>
+    <pre>Last update: %s</pre>
+
+    </body>
+    </html>
+    _EOF_
+
+    printf "$tpl" \
+        "$(curl -s -k https://${HOMER_URL}/demo)" \
+        "$(curl -s -k https://${MARGE_URL}/demo)" \
+        "$(curl -s -k https://${SELMA_URL}/demo)" \
+        "$(curl -s -k https://${PATTY_URL}/demo)" \
+        "$(date)"

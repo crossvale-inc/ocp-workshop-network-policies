@@ -4,8 +4,8 @@
 oc project network-policy-demo-monitor
 oc delete all --all
 
-# Cleanup Simpsons
-oc project simpsons
+# Cleanup Simpson
+oc project simpson
 oc delete all --all
 
 # Cleanup Bouvier
@@ -19,7 +19,7 @@ oc delete all --all
 # Cleanup Projects
 oc project default
 oc delete project network-policy-demo-monitor
-oc delete project simpsons
+oc delete project simpson
 oc delete project bouvier
 oc delete project burns
 

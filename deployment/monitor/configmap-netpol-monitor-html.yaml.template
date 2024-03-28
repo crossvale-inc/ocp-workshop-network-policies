@@ -2,7 +2,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: netpol-monitor-html
-  namespace: network-policy-demo-monitor
+  namespace: ${MONITORPREFIX}
 data:
   update-html.sh: |-
     #!/usr/bin/env bash

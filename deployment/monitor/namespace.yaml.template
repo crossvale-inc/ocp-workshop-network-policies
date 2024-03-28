@@ -4,5 +4,5 @@ metadata:
   annotations:
     openshift.io/description: "Network Policy Demo Monitor"
     openshift.io/display-name: "Network Policy Demo Monitor"
-  name: network-policy-demo-monitor
+  name: ${MONITORPREFIX}
 spec: {}

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source Environment Variables
+source ./env-vars.sh
+
 # Start at the Default Namespace
 oc project default
 
@@ -66,3 +69,21 @@ if [ ! "${REMOVEBURNS}" == "" ] ; then
     oc delete project ${REMOVEBURNS}
     sleep 1
 fi
+
+# Remove Generated Template Files
+# monitor
+rm -f deployment/monitor/kustomization.yaml
+rm -f deployment/monitor/namespace.yaml
+rm -f deployment/monitor/configmap-netpol-monitor-html.yaml
+# simpson
+rm -f deployment/simpson/kustomization.yaml
+rm -f deployment/simpson/namespace.yaml
+# bouvier
+rm -f deployment/bouvier/kustomization.yaml
+rm -f deployment/bouvier/namespace.yaml
+# burns
+rm -f deployment/burns/kustomization.yaml
+rm -f deployment/burns/namespace.yaml
+
+# Remove Environment Vars Script
+rm -f env-vars.sh

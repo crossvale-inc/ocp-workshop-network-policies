@@ -4,5 +4,5 @@ metadata:
   annotations:
     openshift.io/description: "Home of Selma & Petty Bouvier"
     openshift.io/display-name: "Bouvier"
-  name: bouvier
+  name: ${BOUVIERPREFIX}
 spec: {}

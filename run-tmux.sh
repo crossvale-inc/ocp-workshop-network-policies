@@ -17,6 +17,7 @@ fi
 tmux split-window -d -t 0 -v  "watch curl -s -k https://marge-simpson.${SERVER}/demo"
 tmux split-window -d -t 0 -h  "watch curl -s -k https://selma-bouvier.${SERVER}/demo"
 tmux split-window -d -t 2 -h  "watch curl -s -k https://patty-bouvier.${SERVER}/demo"
+tmux split-window -d -t 2 -h  "watch curl -s -k https://monty-burns.${SERVER}/demo"
 if [ -z $TMUX ] ; then
   echo "Attach to session"
   tmux attach-session -t demo-$PID

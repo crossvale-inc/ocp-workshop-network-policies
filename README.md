@@ -42,13 +42,13 @@ oc apply -k deployment/
 === "OC"
 
 ```bash
-oc apply -f console-samples.yaml
+oc apply -f deployment/console-samples.yaml
 ```
 
 === "console-samples.yaml"
 
 ```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/console-samples.yaml"
+    --8<-- "content/networking/network-policy/network-policy-demo/deployment/console-samples.yaml"
 ```
 
 
@@ -89,17 +89,17 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 === "OC"
 
 ```bash
-oc apply -f 01_default-deny-simpson.yaml
+oc apply -f network-policies/01_default-deny-simpson.yaml
 ```
 
 === "01_default-deny-simpson.yaml"
 
 ```yaml
---8<-- "content/networking/network-policy/network-policy-demo/01_default-deny-simpson.yaml"
+--8<-- "content/networking/network-policy/network-policy-demo/network-policies/01_default-deny-simpson.yaml"
 ```
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![01_default-deny-simpson.png](01_default-deny-simpson.png){ width="640" }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png){ width="640" }
 
 ## Step 2) Allow ingress
 
@@ -107,13 +107,13 @@ oc apply -f 01_default-deny-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f 02_allow-from-openshift-ingress-simpson.yaml
+oc apply -f network-policies/02_allow-from-openshift-ingress-simpson.yaml
 ```
 
-=== "02_allow-from-openshift-ingress-simpson.yaml"
+=== "network-policies/02_allow-from-openshift-ingress-simpson.yaml"
 
 ```yaml
---8<-- "content/networking/network-policy/network-policy-demo/02_allow-from-openshift-ingress-simpson.yaml"
+--8<-- "content/networking/network-policy/network-policy-demo/network-policies/02_allow-from-openshift-ingress-simpson.yaml"
 ```
 
 
@@ -127,17 +127,17 @@ oc apply -f 02_allow-from-openshift-ingress-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f 03_allow-same-namespace-simpson.yaml
+oc apply -f network-policies/03_allow-same-namespace-simpson.yaml
 ```
 
-=== "03_allow-same-namespace-simpson.yaml"
+=== "network-policies/03_allow-same-namespace-simpson.yaml"
 
 ```yaml
---8<-- "content/networking/network-policy/network-policy-demo/03_allow-same-namespace-simpson.yaml"
+--8<-- "content/networking/network-policy/network-policy-demo/network-policies/03_allow-same-namespace-simpson.yaml"
 ```
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![03_allow-same-namespace-simpson.png](03_allow-same-namespace-simpson.png){ width="640" }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/03_allow-same-namespace-simpson.png](network-policies/03_allow-same-namespace-simpson.png){ width="640" }
 
 
 ## Step 4) Allow from Bouviers to Marge Simpson
@@ -146,17 +146,17 @@ oc apply -f 03_allow-same-namespace-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f 04_allow-from-bouviers-to-marge-simpson.yaml
+oc apply -f network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
 ```
 
-=== "04_allow-from-bouviers-to-marge-simpson.yaml"
+=== "network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
 
 ```yaml
---8<-- "content/networking/network-policy/network-policy-demo/04_allow-from-bouviers-to-marge-simpson.yaml"
+--8<-- "content/networking/network-policy/network-policy-demo/network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
 ```
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![04_allow-from-bouviers-to-marge-simpson.png](04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/04_allow-from-bouviers-to-marge-simpson.png](network-policies/04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
 
 
 ## Step 5) Allow from Burns to Simpson
@@ -165,17 +165,17 @@ oc apply -f 04_allow-from-bouviers-to-marge-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f 05_allow-from-burns-simpson.yaml
+oc apply -f network-policies/05_allow-from-burns-simpson.yaml
 ```
 
-=== "05_allow-from-burns-simpson.yaml"
+=== "network-policies/05_allow-from-burns-simpson.yaml"
 
 ```yaml
---8<-- "content/networking/network-policy/network-policy-demo/05_allow-from-burns-simpson.yaml"
+--8<-- "content/networking/network-policy/network-policy-demo/network-policies/05_allow-from-burns-simpson.yaml"
 ```
 
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![05_allow-from-burns-simpson.png](05_allow-from-burns-simpson.png){ width="640" }
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/05_allow-from-burns-simpson.png](network-policies/05_allow-from-burns-simpson.png){ width="640" }
 
 
 

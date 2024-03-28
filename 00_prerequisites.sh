@@ -1,5 +1,13 @@
 #!/bin/bash
 
-# Kustomize Deployment of the Projects simpson, bouvier, burns and monitor
-oc apply -k deployment/
+# Prompt For Username to be used as Environment Prefix
+export PREFIX=
+echo "Enter Username"
+read PREFIX
+
+# Create Environment Prefix Variables if applicable
+# simpson
+# bouvier
+# burns
+# network-policy-demo-monitor
 

@@ -2,26 +2,56 @@
 
 # oc projects | grep ${PREFIX}simpson | awk -F" " '{print $1}'
 
+# Start at the Default Namespace
+oc project default
+
 # Cleanup Network Policy Demo Monitor
-oc project ${MONITORPREFIX:-'network-policy-demo-monitor'}
-oc delete all --all
+REMOVEMONITOR=$(oc projects | grep ${MONITORPREFIX:-'network-policy-demo-monitor'} | awk -F" " '{print $1}')
+if [ "!${REMOVEMONITOR}" == "" ] ; then
+    oc project ${REMOVEMONITOR}
+    oc delete all --all
+fi
 
 # Cleanup Simpson
-oc project ${SIMPSONPREFIX:-'simpson'}
-oc delete all --all
+REMOVESIMPSON=$(oc projects | grep ${SIMPSONPREFIX:-'simpson'} | awk -F" " '{print $1}')
+if [ "!${REMOVESIMPSON}" == "" ] ; then
+    oc project ${REMOVESIMPSON}
+    oc delete all --all
+fi
 
 # Cleanup Bouvier
-oc project ${BOUVIERPREFIX:-'bouvier'}
-oc delete all --all
+REMOVEBOUVIER=$(oc projects | grep ${BOUVIERPREFIX:-'bouvier'} | awk -F" " '{print $1}')
+if [ "!${REMOVEBOUVIER}" == "" ] ; then
+    oc project ${REMOVEBOUVIER}
+    oc delete all --all
+fi
 
 # Cleanup Burns
-oc project ${BURNSPREFIX:-'burns'}
-oc delete all --all
+REMOVEBURNS=$(oc projects | grep ${BURNSPREFIX:-'bouvier'} | awk -F" " '{print $1}')
+if [ "!${REMOVEBURNS}" == "" ] ; then
+    oc project ${REMOVEBURNS}
+    oc delete all --all
+fi
 
 # Cleanup Projects
 oc project default
-oc delete project ${MONITORPREFIX:-'network-policy-demo-monitor'}
-oc delete project ${SIMPSONPREFIX:-'simpson'}
-oc delete project ${BOUVIERPREFIX:-'bouvier'}
-oc delete project ${BURNSPREFIX:-'burns'}
 
+# Remove Network Policy Demo Monitor
+if [ "!${REMOVEMONITOR}" == "" ] ; then
+    oc delete project ${REMOVEMONITOR}
+fi
+
+# Remove Simpson
+if [ "!${REMOVESIMPSON}" == "" ] ; then
+    oc delete project ${REMOVESIMPSON}
+fi
+
+# Remove Bouvier
+if [ "!${REMOVEBOUVIER}" == "" ] ; then
+    oc delete project ${REMOVEBOUVIER}
+fi
+
+# Remove Burns
+if [ "!${REMOVEBURNS}" == "" ] ; then
+    oc delete project ${REMOVEBURNS}
+fi

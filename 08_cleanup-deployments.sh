@@ -1,25 +1,27 @@
 #!/bin/bash
 
+# oc projects | grep ${PREFIX}simpson | awk -F" " '{print $1}'
+
 # Cleanup Network Policy Demo Monitor
-oc project network-policy-demo-monitor
+oc project ${MONITORPREFIX:-'network-policy-demo-monitor'}
 oc delete all --all
 
 # Cleanup Simpson
-oc project simpson
+oc project ${SIMPSONPREFIX:-'simpson'}
 oc delete all --all
 
 # Cleanup Bouvier
-oc project bouvier
+oc project ${BOUVIERPREFIX:-'bouvier'}
 oc delete all --all
 
 # Cleanup Burns
-oc project burns
+oc project ${BURNSPREFIX:-'burns'}
 oc delete all --all
 
 # Cleanup Projects
 oc project default
-oc delete project network-policy-demo-monitor
-oc delete project simpson
-oc delete project bouvier
-oc delete project burns
+oc delete project ${MONITORPREFIX:-'network-policy-demo-monitor'}
+oc delete project ${SIMPSONPREFIX:-'simpson'}
+oc delete project ${BOUVIERPREFIX:-'bouvier'}
+oc delete project ${BURNSPREFIX:-'burns'}
 

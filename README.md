@@ -17,10 +17,7 @@ Official documentation: [About network policy
 ](https://docs.openshift.com/container-platform/latest/networking/network_policy/about-network-policy.html)
 
 
-I presented this demo at the Next Generation Datacenter webinar, here the recording (in German)
-
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/n3cq7Ql0VSk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+Based on a blog post done here - [Network Policy Demo](https://examples.openshift.pub/networking/network-policy/OpenShiftSDN/​)
 
 
 ## Environment

@@ -5,6 +5,9 @@ namespace: burns
 
 resources:
 - namespace.yaml
-- virtualmachine.yaml
-- route.yaml
-- service.yaml
+#- virtualmachine.yaml
+#- route.yaml
+#- service.yaml
+- monty-deployment.yaml
+- monty-service.yaml
+- monty-route.yaml

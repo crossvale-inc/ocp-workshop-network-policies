@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: monty
+    app.kubernetes.io/component: monty
+    app.kubernetes.io/instance: monty
+    app.kubernetes.io/name: monty
+    app.kubernetes.io/part-of: monty
+    app.openshift.io/runtime: redhat
+  name: monty
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monty
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: monty
+        deployment: monty
+    spec:
+      containers:
+      - image: quay.io/openshift-examples/simple-http-server:micro
+        imagePullPolicy: Always
+        name: http-server
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}

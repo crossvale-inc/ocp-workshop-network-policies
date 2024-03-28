@@ -32,7 +32,7 @@ I presented this demo at the Next Generation Datacenter webinar, here the record
 === "OC"
 
 ```bash
-oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/
+oc apply -k deployment/
 ```
 
 ## Optional: Deploy OpenShift Console samples
@@ -42,7 +42,7 @@ oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deplo
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}console-samples.yaml
+oc apply -f console-samples.yaml
 ```
 
 === "console-samples.yaml"
@@ -74,7 +74,7 @@ sh run-tmux.sh $WILDCARD_DOMAIN
 === "OC"
 
 ```bash
-oc apply -k https://github.com/crossvale-inc/ocp-workshop-network-policies/deployment/monitor/
+oc apply -k deployment/monitor/
 ```
 
 Watch logs:
@@ -89,7 +89,7 @@ oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}01_default-deny-simpson.yaml
+oc apply -f 01_default-deny-simpson.yaml
 ```
 
 === "01_default-deny-simpson.yaml"
@@ -107,7 +107,7 @@ oc apply -f {{ page.canonical_url }}01_default-deny-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}02_allow-from-openshift-ingress-simpson.yaml
+oc apply -f 02_allow-from-openshift-ingress-simpson.yaml
 ```
 
 === "02_allow-from-openshift-ingress-simpson.yaml"
@@ -127,7 +127,7 @@ oc apply -f {{ page.canonical_url }}02_allow-from-openshift-ingress-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}03_allow-same-namespace-simpson.yaml
+oc apply -f 03_allow-same-namespace-simpson.yaml
 ```
 
 === "03_allow-same-namespace-simpson.yaml"
@@ -146,7 +146,7 @@ oc apply -f {{ page.canonical_url }}03_allow-same-namespace-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}04_allow-from-bouviers-to-marge-simpson.yaml
+oc apply -f 04_allow-from-bouviers-to-marge-simpson.yaml
 ```
 
 === "04_allow-from-bouviers-to-marge-simpson.yaml"
@@ -165,7 +165,7 @@ oc apply -f {{ page.canonical_url }}04_allow-from-bouviers-to-marge-simpson.yaml
 === "OC"
 
 ```bash
-oc apply -f {{ page.canonical_url }}05_allow-from-burns-simpson.yaml
+oc apply -f 05_allow-from-burns-simpson.yaml
 ```
 
 === "05_allow-from-burns-simpson.yaml"

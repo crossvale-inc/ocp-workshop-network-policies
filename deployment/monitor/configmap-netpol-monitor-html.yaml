@@ -68,4 +68,5 @@ data:
         "$(curl -s -k https://${MARGE_URL}/demo)" \
         "$(curl -s -k https://${SELMA_URL}/demo)" \
         "$(curl -s -k https://${PATTY_URL}/demo)" \
+        "$(curl -s -k https://${MONTY_URL}/demo)" \
         "$(date)"

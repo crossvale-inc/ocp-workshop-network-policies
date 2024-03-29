@@ -1,16 +1,14 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-from-bouviers-to-marge
-  namespace: simpson
+  name: allow-from-burns
+  namespace: ${SIMPSONPREFIX}
 spec:
-  podSelector:
-    matchLabels:
-      deployment: marge
+  podSelector: {}
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: bouvier
+          kubernetes.io/metadata.name: burns
   policyTypes:
   - Ingress

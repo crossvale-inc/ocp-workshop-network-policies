@@ -62,3 +62,11 @@ envsubst < deployment/burns/namespace.yaml.template > deployment/burns/namespace
 envsubst < deployment/monitor/kustomization.yaml.template > deployment/monitor/kustomization.yaml
 envsubst < deployment/monitor/namespace.yaml.template > deployment/monitor/namespace.yaml
 envsubst < deployment/monitor/configmap-netpol-monitor-html.yaml.template > deployment/monitor/configmap-netpol-monitor-html.yaml
+
+# network policies
+envsubst < network-policies/01_default-deny-simpson.yaml.template > network-policies/01_default-deny-simpson.yaml
+envsubst < network-policies/02_allow-from-openshift-ingress-simpson.yaml.template > network-policies/02_allow-from-openshift-ingress-simpson.yaml
+envsubst < network-policies/03_allow-same-namespace-simpson.yaml.template > network-policies/03_allow-same-namespace-simpson.yaml
+envsubst < network-policies/04_allow-from-bouviers-to-marge-simpson.yaml.template > network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
+envsubst < network-policies/05_allow-from-burns-simpson.yaml.template > network-policies/05_allow-from-burns-simpson.yaml
+

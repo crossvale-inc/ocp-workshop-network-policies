@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: marge
-    app.kubernetes.io/component: marge
-    app.kubernetes.io/instance: marge
-    app.kubernetes.io/name: marge
-    app.kubernetes.io/part-of: marge
+    app: ${HOMERPREFIX}
+    app.kubernetes.io/component: ${HOMERPREFIX}
+    app.kubernetes.io/instance: ${HOMERPREFIX}
+    app.kubernetes.io/name: ${HOMERPREFIX}
+    app.kubernetes.io/part-of: ${HOMERPREFIX}
     app.openshift.io/runtime: redhat
-  name: marge
+  name: ${HOMERPREFIX}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: marge
+      app: ${HOMERPREFIX}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: marge
-        deployment: marge
+        app: ${HOMERPREFIX}
+        deployment: ${HOMERPREFIX}
     spec:
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro

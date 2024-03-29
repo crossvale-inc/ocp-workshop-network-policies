@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: monty
-    app.kubernetes.io/component: monty
-    app.kubernetes.io/instance: monty
-    app.kubernetes.io/name: monty
-    app.kubernetes.io/part-of: monty
+    app: ${SELMAPREFIX}
+    app.kubernetes.io/component: ${SELMAPREFIX}
+    app.kubernetes.io/instance: ${SELMAPREFIX}
+    app.kubernetes.io/name: ${SELMAPREFIX}
+    app.kubernetes.io/part-of: ${SELMAPREFIX}
     app.openshift.io/runtime: redhat
-  name: monty
+  name: ${SELMAPREFIX}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: monty
+      app: ${SELMAPREFIX}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: monty
-        deployment: monty
+        app: ${SELMAPREFIX}
+        deployment: ${SELMAPREFIX}
     spec:
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro

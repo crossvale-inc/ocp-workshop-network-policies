@@ -75,15 +75,36 @@ fi
 rm -f deployment/monitor/kustomization.yaml
 rm -f deployment/monitor/namespace.yaml
 rm -f deployment/monitor/configmap-netpol-monitor-html.yaml
+rm -f deployment/monitor/clusterrole.yaml
+rm -f deployment/monitor/deployment.yaml
+rm -f deployment/monitor/rolebinding.yaml
+rm -f deployment/monitor/route.yaml
+rm -f deployment/monitor/service.yaml
+rm -f deployment/monitor/serviceaccount.yaml
 # simpson
 rm -f deployment/simpson/kustomization.yaml
 rm -f deployment/simpson/namespace.yaml
+rm -f deployment/simpson/homer-deployment.yaml
+rm -f deployment/simpson/homer-route.yaml
+rm -f deployment/simpson/homer-service.yaml
+rm -f deployment/simpson/marge-deployment.yaml
+rm -f deployment/simpson/marge-route.yaml
+rm -f deployment/simpson/marge-service.yaml
 # bouvier
 rm -f deployment/bouvier/kustomization.yaml
 rm -f deployment/bouvier/namespace.yaml
+rm -f deployment/bouvier/patty-deployment.yaml
+rm -f deployment/bouvier/patty-route.yaml
+rm -f deployment/bouvier/patty-service.yaml
+rm -f deployment/bouvier/selma-deployment.yaml
+rm -f deployment/bouvier/selma-route.yaml
+rm -f deployment/bouvier/selma-service.yaml
 # burns
 rm -f deployment/burns/kustomization.yaml
 rm -f deployment/burns/namespace.yaml
+rm -f deployment/burns/monty-deployment.yaml
+rm -f deployment/burns/monty-route.yaml
+rm -f deployment/burns/monty-service.yaml
 # console samples
 rm -f deployment/console-samples.yaml
 

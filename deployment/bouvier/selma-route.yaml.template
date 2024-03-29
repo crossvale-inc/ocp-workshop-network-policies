@@ -2,13 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: homer
-    app.kubernetes.io/component: homer
-    app.kubernetes.io/instance: homer
-    app.kubernetes.io/name: homer
-    app.kubernetes.io/part-of: homer
+    app: ${SELMAPREFIX}
+    app.kubernetes.io/component: ${SELMAPREFIX}
+    app.kubernetes.io/instance: ${SELMAPREFIX}
+    app.kubernetes.io/name: ${SELMAPREFIX}
+    app.kubernetes.io/part-of: ${SELMAPREFIX}
     app.openshift.io/runtime-version: micro
-  name: homer
+  name: ${SELMAPREFIX}
 spec:
   port:
     targetPort: 8080-tcp
@@ -17,6 +17,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: homer
+    name: ${SELMAPREFIX}
     weight: 100
   wildcardPolicy: None

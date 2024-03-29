@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: patty
-    app.kubernetes.io/component: patty
-    app.kubernetes.io/instance: patty
-    app.kubernetes.io/name: patty
-    app.kubernetes.io/part-of: patty
+    app: ${MARGEPREFIX}
+    app.kubernetes.io/component: ${MARGEPREFIX}
+    app.kubernetes.io/instance: ${MARGEPREFIX}
+    app.kubernetes.io/name: ${MARGEPREFIX}
+    app.kubernetes.io/part-of: ${MARGEPREFIX}
     app.openshift.io/runtime: redhat
-  name: patty
+  name: ${MARGEPREFIX}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: patty
+      app: ${MARGEPREFIX}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: patty
-        deployment: patty
+        app: ${MARGEPREFIX}
+        deployment: ${MARGEPREFIX}
     spec:
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro

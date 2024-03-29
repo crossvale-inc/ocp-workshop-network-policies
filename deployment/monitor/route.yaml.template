@@ -2,14 +2,14 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: monitor
-  name: monitor
+    app: ${MONPREFIX}
+  name: ${MONPREFIX}
 spec:
   port:
     targetPort: http
   to:
     kind: "Service"
-    name: monitor
+    name: ${MONPREFIX}
     weight: null
   tls:
     termination: Edge

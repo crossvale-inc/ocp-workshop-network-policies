@@ -2,13 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: patty
-    app.kubernetes.io/component: patty
-    app.kubernetes.io/instance: patty
-    app.kubernetes.io/name: patty
-    app.kubernetes.io/part-of: patty
+    app: ${HOMERPREFIX}
+    app.kubernetes.io/component: ${HOMERPREFIX}
+    app.kubernetes.io/instance: ${HOMERPREFIX}
+    app.kubernetes.io/name: ${HOMERPREFIX}
+    app.kubernetes.io/part-of: ${HOMERPREFIX}
     app.openshift.io/runtime-version: micro
-  name: patty
+  name: ${HOMERPREFIX}
 spec:
   port:
     targetPort: 8080-tcp
@@ -17,6 +17,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: patty
+    name: ${HOMERPREFIX}
     weight: 100
   wildcardPolicy: None

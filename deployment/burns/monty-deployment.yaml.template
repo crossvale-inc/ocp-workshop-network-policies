@@ -2,18 +2,18 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: selma
-    app.kubernetes.io/component: selma
-    app.kubernetes.io/instance: selma
-    app.kubernetes.io/name: selma
-    app.kubernetes.io/part-of: selma
+    app: ${MONTYPREFIX}
+    app.kubernetes.io/component: ${MONTYPREFIX}
+    app.kubernetes.io/instance: ${MONTYPREFIX}
+    app.kubernetes.io/name: ${MONTYPREFIX}
+    app.kubernetes.io/part-of: ${MONTYPREFIX}
     app.openshift.io/runtime: redhat
-  name: selma
+  name: ${MONTYPREFIX}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: selma
+      app: ${MONTYPREFIX}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -23,8 +23,8 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        app: selma
-        deployment: selma
+        app: ${MONTYPREFIX}
+        deployment: ${MONTYPREFIX}
     spec:
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro

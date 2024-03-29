@@ -2,13 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: monty
-    app.kubernetes.io/component: monty
-    app.kubernetes.io/instance: monty
-    app.kubernetes.io/name: monty
-    app.kubernetes.io/part-of: monty
+    app: ${PATTYPREFIX}
+    app.kubernetes.io/component: ${PATTYPREFIX}
+    app.kubernetes.io/instance: ${PATTYPREFIX}
+    app.kubernetes.io/name: ${PATTYPREFIX}
+    app.kubernetes.io/part-of: ${PATTYPREFIX}
     app.openshift.io/runtime-version: micro
-  name: monty
+  name: ${PATTYPREFIX}
 spec:
   port:
     targetPort: 8080-tcp
@@ -17,6 +17,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: monty
+    name: ${PATTYPREFIX}
     weight: 100
   wildcardPolicy: None

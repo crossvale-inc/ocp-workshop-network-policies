@@ -6,11 +6,11 @@ metadata:
 spec:
   podSelector:
     matchLabels:
-      deployment: marge
+      deployment: ${MARGEPREFIX}
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
-          kubernetes.io/metadata.name: bouvier
+          kubernetes.io/metadata.name: ${BOUVIERPREFIX}
   policyTypes:
   - Ingress

@@ -2,13 +2,13 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: marge
-    app.kubernetes.io/component: marge
-    app.kubernetes.io/instance: marge
-    app.kubernetes.io/name: marge
-    app.kubernetes.io/part-of: marge
+    app: ${MONTYPREFIX}
+    app.kubernetes.io/component: ${MONTYPREFIX}
+    app.kubernetes.io/instance: ${MONTYPREFIX}
+    app.kubernetes.io/name: ${MONTYPREFIX}
+    app.kubernetes.io/part-of: ${MONTYPREFIX}
     app.openshift.io/runtime-version: micro
-  name: marge
+  name: ${MONTYPREFIX}
 spec:
   port:
     targetPort: 8080-tcp
@@ -17,6 +17,6 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: marge
+    name: ${MONTYPREFIX}
     weight: 100
   wildcardPolicy: None

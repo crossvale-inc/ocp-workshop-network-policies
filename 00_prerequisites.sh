@@ -63,6 +63,9 @@ envsubst < deployment/monitor/kustomization.yaml.template > deployment/monitor/k
 envsubst < deployment/monitor/namespace.yaml.template > deployment/monitor/namespace.yaml
 envsubst < deployment/monitor/configmap-netpol-monitor-html.yaml.template > deployment/monitor/configmap-netpol-monitor-html.yaml
 
+# console samples
+envsubst < deployment/console-samples.yaml.template > deployment/console-samples.yaml
+
 # network policies
 envsubst < network-policies/01_default-deny-simpson.yaml.template > network-policies/01_default-deny-simpson.yaml
 envsubst < network-policies/02_allow-from-openshift-ingress-simpson.yaml.template > network-policies/02_allow-from-openshift-ingress-simpson.yaml

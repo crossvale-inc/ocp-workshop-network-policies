@@ -111,7 +111,7 @@ spec:
     kind: NetworkPolicy
     metadata:
       name: allow-from-bouviers-to-marge
-      namespace: simpson
+      namespace: ${SIMPSONPREFIX}
     spec:
       podSelector:
         matchLabels:

@@ -84,6 +84,8 @@ rm -f deployment/bouvier/namespace.yaml
 # burns
 rm -f deployment/burns/kustomization.yaml
 rm -f deployment/burns/namespace.yaml
+# console samples
+rm -f deployment/console-samples.yaml
 
 # network policies
 rm -f network-policies/01_default-deny-simpson.yaml

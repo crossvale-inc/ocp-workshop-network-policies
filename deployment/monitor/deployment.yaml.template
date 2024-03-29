@@ -60,11 +60,11 @@ spec:
             while true; do
                 echo "# =========================================================="
                 echo -n "# "; date
-                curl -s -k https://${HOMER_URL}/demo
-                curl -s -k https://${MARGE_URL}/demo
-                curl -s -k https://${SELMA_URL}/demo
-                curl -s -k https://${PATTY_URL}/demo
-                curl -s -k https://${MONTY_URL}/demo
+                curl -s -k https://${DUMMY}{HOMER_URL}/demo
+                curl -s -k https://${DUMMY}{MARGE_URL}/demo
+                curl -s -k https://${DUMMY}{SELMA_URL}/demo
+                curl -s -k https://${DUMMY}{PATTY_URL}/demo
+                curl -s -k https://${DUMMY}{MONTY_URL}/demo
 
                 sh /netpol-monitor-html/update-html.sh  > /docroot/index.html.new
                 cp -v /docroot/index.html.new /docroot/index.html

@@ -28,6 +28,7 @@ export MONTYPREFIX=${PREFIX}-monty
 # network-policy-demo-monitor
 export MONITORPREFIX=${PREFIX}-network-policy-demo-monitor
 export MONPREFIX=${PREFIX}-monitor
+export DUMMY=$
 EOF
 
 else
@@ -48,6 +49,7 @@ export MONTYPREFIX=monty
 # network-policy-demo-monitor
 export MONITORPREFIX=network-policy-demo-monitor
 export MONPREFIX=monitor
+export DUMMY=$
 EOF
 fi
 

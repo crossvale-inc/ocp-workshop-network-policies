@@ -7,40 +7,47 @@ source ./env-vars.sh
 oc project default
 
 # Cleanup Network Policy Demo Monitor
-#export MONITORPREFIX=${MONITORPREFIX:-'network-policy-demo-monitor'}
-#export REMOVEMONITOR=$(oc projects | grep ${MONITORPREFIX} | awk -F" " '{print $1}')
-
 if [ ! "${MONITORPREFIX}" == "" ] ; then
-    oc project ${MONITORPREFIX}
-    oc delete all --all
-    sleep 1
+    # Check if Project exists
+    export REMOVEMONITOR=$(oc projects | grep ${MONITORPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEMONITOR}" == "" ] ; then
+        oc project ${REMOVEMONITOR}
+        oc delete all --all
+        sleep 1
+    fi
 fi
 
 # Cleanup Simpson
-#export SIMPSONPREFIX=${SIMPSONPREFIX:-'simpson'}
-#export REMOVESIMPSON=$(oc projects | grep ${SIMPSONPREFIX} | awk -F" " '{print $1}')
 if [ ! "${SIMPSONPREFIX}" == "" ] ; then
-    oc project ${SIMPSONPREFIX}
-    oc delete all --all
-    sleep 1
+    # Check if Project exists
+    export REMOVESIMPSON=$(oc projects | grep ${SIMPSONPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVESIMPSON}" == "" ] ; then
+        oc project ${REMOVESIMPSON}
+        oc delete all --all
+        sleep 1
+    fi
 fi
 
 # Cleanup Bouvier
-#export BOUVIERPREFIX=${BOUVIERPREFIX:-'bouvier'}
-#export REMOVEBOUVIER=$(oc projects | grep ${BOUVIERPREFIX} | awk -F" " '{print $1}')
 if [ ! "${BOUVIERPREFIX}" == "" ] ; then
-    oc project ${BOUVIERPREFIX}
-    oc delete all --all
-    sleep 1
+    # Check if Project exists
+    export REMOVEBOUVIER=$(oc projects | grep ${BOUVIERPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEBOUVIER}" == "" ] ; then
+        oc project ${REMOVEBOUVIER}
+        oc delete all --all
+        sleep 1
+    fi
 fi
 
 # Cleanup Burns
-#export BURNSPREFIX=${BURNSPREFIX:-'burns'}
-#export REMOVEBURNS=$(oc projects | grep ${BURNSPREFIX} | awk -F" " '{print $1}')
 if [ ! "${BURNSPREFIX}" == "" ] ; then
-    oc project ${BURNSPREFIX}
-    oc delete all --all
-    sleep 1
+    # Check if Project exists
+    export REMOVEBURNS=$(oc projects | grep ${BURNSPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEBURNS}" == "" ] ; then
+        oc project ${REMOVEBURNS}
+        oc delete all --all
+        sleep 1
+    fi
 fi
 
 # Cleanup Projects
@@ -48,26 +55,42 @@ oc project default
 
 # Remove Network Policy Demo Monitor
 if [ ! "${MONITORPREFIX}" == "" ] ; then
-    oc delete project ${MONITORPREFIX}
-    sleep 1
+    # Check if Project exists
+    export REMOVEMONITOR=$(oc projects | grep ${MONITORPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEMONITOR}" == "" ] ; then
+        oc delete project ${REMOVEMONITOR}
+        sleep 1
+    fi
 fi
 
 # Remove Simpson
 if [ ! "${SIMPSONPREFIX}" == "" ] ; then
-    oc delete project ${SIMPSONPREFIX}
-    sleep 1
+    # Check if Project exists
+    export REMOVESIMPSON=$(oc projects | grep ${SIMPSONPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVESIMPSON}" == "" ] ; then
+        oc delete project ${REMOVESIMPSON}
+        sleep 1
+    fi
 fi
 
 # Remove Bouvier
 if [ ! "${BOUVIERPREFIX}" == "" ] ; then
-    oc delete project ${BOUVIERPREFIX}
-    sleep 1
+    # Check if Project exists
+    export REMOVEBOUVIER=$(oc projects | grep ${BOUVIERPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEBOUVIER}" == "" ] ; then
+        oc delete project ${REMOVEBOUVIER}
+        sleep 1
+    fi
 fi
 
 # Remove Burns
 if [ ! "${BURNSPREFIX}" == "" ] ; then
-    oc delete project ${BURNSPREFIX}
-    sleep 1
+    # Check if Project exists
+    export REMOVEBURNS=$(oc projects | grep ${BURNSPREFIX} | awk -F" " '{print $1}')
+    if [ ! "${REMOVEBURNS}" == "" ] ; then
+        oc delete project ${REMOVEBURNS}
+        sleep 1
+    fi
 fi
 
 # Remove Generated Template Files
@@ -105,8 +128,9 @@ rm -f deployment/burns/namespace.yaml
 rm -f deployment/burns/monty-deployment.yaml
 rm -f deployment/burns/monty-route.yaml
 rm -f deployment/burns/monty-service.yaml
-# console samples
+# misc.
 rm -f deployment/console-samples.yaml
+rm -f deployment/configmap-srv-sh.yaml
 
 # network policies
 rm -f network-policies/01_default-deny-simpson.yaml

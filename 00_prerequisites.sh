@@ -98,8 +98,22 @@ envsubst < deployment/monitor/route.yaml.template > deployment/monitor/route.yam
 envsubst < deployment/monitor/service.yaml.template > deployment/monitor/service.yaml
 envsubst < deployment/monitor/serviceaccount.yaml.template > deployment/monitor/serviceaccount.yaml
 
-# console samples
+# misc.
 envsubst < deployment/console-samples.yaml.template > deployment/console-samples.yaml
+
+# ONLY Run if a PREFIX exists
+if [ ! "${PREFIX}" == "" ] ; then
+    #envsubst < deployment/configmap-srv-sh.yaml.template > deployment/configmap-srv-sh.yaml
+    sed "s|#{MONITORPREFIX}|${MONITORPREFIX}|g" deployment/configmap-srv-sh.yaml.template > deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/configmap-srv-sh.yaml
+fi
 
 # network policies
 envsubst < network-policies/01_default-deny-simpson.yaml.template > network-policies/01_default-deny-simpson.yaml

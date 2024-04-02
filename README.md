@@ -63,85 +63,45 @@ sh run-tmux.sh $WILDCARD_DOMAIN
 # This will block any traffic to and from namespaces and within namespaces
 ./03_default-deny-namespaces.sh
 ```
+<!---
 ![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png)
+--->
 
-## Step 2) Allow ingress
+<!---
+## Network Policy - Allow from Ingress to Simpson Namespace
 
+![02_allow-from-openshift-ingress-simpson.png](02_allow-from-openshift-ingress-simpson.png){ width="640" }
+--->
 
-=== "OC"
-
+## Network Policy - Allow Same Namespaces
 ```bash
-oc apply -f network-policies/02_allow-from-openshift-ingress-simpson.yaml
+# This will allow only traffic from the same namespace and block from outside the namespace
+./05_allow-same-namespaces.sh
 ```
+<!---
+![network-policies/03_allow-same-namespace-simpson.png](network-policies/03_allow-same-namespace-simpson.png){ width="640" }
+--->
 
-=== "network-policies/02_allow-from-openshift-ingress-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/02_allow-from-openshift-ingress-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![02_allow-from-openshift-ingress-simpson.png](02_allow-from-openshift-ingress-simpson.png){ width="640" }
-
-
-
-## Step 3) Allow ingress
-
-
-=== "OC"
-
+## Network Policy - Allow Bouviers Namespace to Marge Simpson Application
 ```bash
-oc apply -f network-policies/03_allow-same-namespace-simpson.yaml
+# This will allow only traffic from the Bouviers namespace to the Marge Simpson application in the Simpson namespace
+./06_allow-bouviers-to-marge-simpson.sh
 ```
+<!---
+![network-policies/04_allow-from-bouviers-to-marge-simpson.png](network-policies/04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
+--->
 
-=== "network-policies/03_allow-same-namespace-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/03_allow-same-namespace-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/03_allow-same-namespace-simpson.png](network-policies/03_allow-same-namespace-simpson.png){ width="640" }
-
-
-## Step 4) Allow from Bouviers to Marge Simpson
-
-
-=== "OC"
-
+## Network Policy - Allow Burns Namespace to Simpsons Namespace
 ```bash
-oc apply -f network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
+# This will allow traffic from the Burns namespace to the Simpsons namespace
+./07_allow-burns-to-simpson.sh
 ```
+<!---
+![network-policies/05_allow-from-burns-simpson.png](network-policies/05_allow-from-burns-simpson.png){ width="640" }
+--->
 
-=== "network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/04_allow-from-bouviers-to-marge-simpson.png](network-policies/04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
-
-
-## Step 5) Allow from Burns to Simpson
-
-
-=== "OC"
-
+## Cleanup the Deployments
 ```bash
-oc apply -f network-policies/05_allow-from-burns-simpson.yaml
+# This will delete the deployments in each of the namespaces, remove any artifacts that were deployed as well as delete any locally generated files
+./08_cleanup-deployments.sh
 ```
-
-=== "network-policies/05_allow-from-burns-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/05_allow-from-burns-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/05_allow-from-burns-simpson.png](network-policies/05_allow-from-burns-simpson.png){ width="640" }
-
-
-
-
-

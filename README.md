@@ -1,21 +1,6 @@
----
-title: Network Policy Demo
-linktitle: Network Policy Demo
-weight: 16100
-description: Generall Network Policy Demo based on Simpsons
-tags:
- - demo
- - lab
- - netpol
- - NetworkPolicy
- - network
----
-
 # Network Policy Demo
 
-Official documentation: [About network policy
-](https://docs.openshift.com/container-platform/latest/networking/network_policy/about-network-policy.html)
-
+Official documentation: [About network policy](https://docs.openshift.com/container-platform/latest/networking/network_policy/about-network-policy.html)
 
 Based on a blog post done here - [Network Policy Demo](https://examples.openshift.pub/networking/network-policy/OpenShiftSDN/​)
 
@@ -24,12 +9,17 @@ Based on a blog post done here - [Network Policy Demo](https://examples.openshif
 
 ![demo overview](demo-overview-v2.png)
 
-## Deploy Environment
-
-=== "OC"
-
+## Prerequisites
 ```bash
-oc apply -k deployment/
+git clone https://github.com/crossvale-inc/ocp-workshop-network-policies
+cd ocp-workshop-network-policies
+# Enter your username when prompted to create namespaces prefixed with username E.g. chamilton-simpsons, chamilton-bouvier, etc.
+./00_prerequisites.sh
+```
+
+## Deploy Environment
+```bash
+./01_start-deployments.sh
 ```
 
 ## Optional: Deploy OpenShift Console samples

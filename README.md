@@ -19,29 +19,29 @@ cd ocp-workshop-network-policies
 
 ## Deploy Environment
 ```bash
+# This will deploy the applications for Homer, Marge, Selma, Patty, Monty and Monitor to the prefixed namespaces respectively
 ./01_start-deployments.sh
 ```
 
 ## Optional: Deploy OpenShift Console samples
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![OpenShift Console](ocp-console.png){ width="640" }
-
-=== "OC"
+![OpenShift Console](ocp-console.png)
 
 ```bash
-oc apply -f deployment/console-samples.yaml
+# Optional: This will deploy the Network Policy Samples related to the Simpson Lab.  This is not required to make the lab work.
+./01b_deploy-openshift-console-samples.sh
 ```
+## Start Monitoring Logs
 
-=== "console-samples.yaml"
+### Option 1) via Pod
+Watch logs:
 
-```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/deployment/console-samples.yaml"
+```bash
+# This will show the logs from the Network Monitor Pod
+./02_monitor-deployments.sh
 ```
-
-
-## Start Monitor
-
-### Option 1) Local tmux script
+<!---
+### Option 2) Local tmux script
 
 ```bash
 curl -L -O {{ page.canonical_url }}run-tmux.sh
@@ -54,39 +54,16 @@ WILDCARD_DOMAIN=$( oc get ingresscontroller/default -n openshift-ingress-operato
 sh run-tmux.sh $WILDCARD_DOMAIN
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![tmux](tmux-example.png){ width="640" }
+![tmux](tmux-example.png){ width="640" }
 
-### Option 2) via Pod 
+--->
 
-=== "OC"
-
+## Network Policy - Default Deny Namespaces
 ```bash
-oc apply -k deployment/monitor/
+# This will block any traffic to and from namespaces and within namespaces
+./03_default-deny-namespaces.sh
 ```
-
-Watch logs:
-
-```bash
-oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
-```
-
-## Step 1) Default deny
-
-
-=== "OC"
-
-```bash
-oc apply -f network-policies/01_default-deny-simpson.yaml
-```
-
-=== "01_default-deny-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/01_default-deny-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png){ width="640" }
+![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png)
 
 ## Step 2) Allow ingress
 

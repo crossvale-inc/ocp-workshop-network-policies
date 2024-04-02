@@ -26,10 +26,18 @@ spec:
         app: ${MONTYPREFIX}
         deployment: ${MONTYPREFIX}
     spec:
+      volumes:
+        - name: ${MONTYPREFIX}-srv-sh
+          configMap:
+            name: ${MONTYPREFIX}-srv-sh
+            defaultMode: 0777
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro
         imagePullPolicy: Always
         name: http-server
+        volumeMounts:
+          - name: ${MONTYPREFIX}-srv-sh
+            mountPath: /www/
         ports:
         - containerPort: 8080
           protocol: TCP

@@ -11,3 +11,4 @@ resources:
 - monty-deployment.yaml
 - monty-service.yaml
 - monty-route.yaml
+- monty-configmap-srv-sh.yaml

@@ -26,10 +26,18 @@ spec:
         app: ${SELMAPREFIX}
         deployment: ${SELMAPREFIX}
     spec:
+      volumes:
+        - name: ${SELMAPREFIX}-srv-sh
+          configMap:
+            name: ${SELMAPREFIX}-srv-sh
+            defaultMode: 0777
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro
         imagePullPolicy: Always
         name: http-server
+        volumeMounts:
+          - name: ${SELMAPREFIX}-srv-sh
+            mountPath: /www/
         ports:
         - containerPort: 8080
           protocol: TCP

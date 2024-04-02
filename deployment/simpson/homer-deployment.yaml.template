@@ -26,10 +26,18 @@ spec:
         app: ${HOMERPREFIX}
         deployment: ${HOMERPREFIX}
     spec:
+      volumes:
+        - name: ${HOMERPREFIX}-srv-sh
+          configMap:
+            name: ${HOMERPREFIX}-srv-sh
+            defaultMode: 0777
       containers:
       - image: quay.io/openshift-examples/simple-http-server:micro
         imagePullPolicy: Always
         name: http-server
+        volumeMounts:
+          - name: ${HOMERPREFIX}-srv-sh
+            mountPath: /www/
         ports:
         - containerPort: 8080
           protocol: TCP

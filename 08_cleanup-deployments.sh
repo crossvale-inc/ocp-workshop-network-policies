@@ -104,6 +104,7 @@ rm -f deployment/monitor/rolebinding.yaml
 rm -f deployment/monitor/route.yaml
 rm -f deployment/monitor/service.yaml
 rm -f deployment/monitor/serviceaccount.yaml
+
 # simpson
 rm -f deployment/simpson/kustomization.yaml
 rm -f deployment/simpson/namespace.yaml
@@ -113,6 +114,9 @@ rm -f deployment/simpson/homer-service.yaml
 rm -f deployment/simpson/marge-deployment.yaml
 rm -f deployment/simpson/marge-route.yaml
 rm -f deployment/simpson/marge-service.yaml
+rm -f deployment/simpson/homer-configmap-srv-sh.yaml
+rm -f deployment/simpson/marge-configmap-srv-sh.yaml
+
 # bouvier
 rm -f deployment/bouvier/kustomization.yaml
 rm -f deployment/bouvier/namespace.yaml
@@ -122,15 +126,19 @@ rm -f deployment/bouvier/patty-service.yaml
 rm -f deployment/bouvier/selma-deployment.yaml
 rm -f deployment/bouvier/selma-route.yaml
 rm -f deployment/bouvier/selma-service.yaml
+rm -f deployment/bouvier/patty-configmap-srv-sh.yaml
+rm -f deployment/bouvier/selma-configmap-srv-sh.yaml
+
 # burns
 rm -f deployment/burns/kustomization.yaml
 rm -f deployment/burns/namespace.yaml
 rm -f deployment/burns/monty-deployment.yaml
 rm -f deployment/burns/monty-route.yaml
 rm -f deployment/burns/monty-service.yaml
+rm -f deployment/burns/monty-configmap-srv-sh.yaml
+
 # misc.
 rm -f deployment/console-samples.yaml
-rm -f deployment/configmap-srv-sh.yaml
 
 # network policies
 rm -f network-policies/01_default-deny-simpson.yaml

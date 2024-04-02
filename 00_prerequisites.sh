@@ -10,7 +10,7 @@ read PREFIX
 
 # Create Environment Prefix Variables if applicable
 if [ ! "${PREFIX}" == "" ] ; then
-    echo "FOUND PREFIX"
+    echo "FOUND PREFIX -> ${PREFIX}"
     cat <<-EOF > env-vars.sh
 #!/bin/bash
 export PREFIX=${PREFIX}
@@ -29,6 +29,7 @@ export MONTYPREFIX=${PREFIX}-monty
 export MONITORPREFIX=${PREFIX}-network-policy-demo-monitor
 export MONPREFIX=${PREFIX}-monitor
 export DUMMY=$
+export SCRIPT_FIELD_SEPARATOR=f1,2
 EOF
 
 else
@@ -50,6 +51,7 @@ export MONTYPREFIX=monty
 export MONITORPREFIX=network-policy-demo-monitor
 export MONPREFIX=monitor
 export DUMMY=$
+export SCRIPT_FIELD_SEPARATOR=f1
 EOF
 fi
 
@@ -102,18 +104,62 @@ envsubst < deployment/monitor/serviceaccount.yaml.template > deployment/monitor/
 envsubst < deployment/console-samples.yaml.template > deployment/console-samples.yaml
 
 # ONLY Run if a PREFIX exists
-if [ ! "${PREFIX}" == "" ] ; then
+#if [ ! "${PREFIX}" == "" ] ; then
     #envsubst < deployment/configmap-srv-sh.yaml.template > deployment/configmap-srv-sh.yaml
-    sed "s|#{MONITORPREFIX}|${MONITORPREFIX}|g" deployment/configmap-srv-sh.yaml.template > deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/configmap-srv-sh.yaml
-    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/configmap-srv-sh.yaml
-fi
+    #bouvier
+    #patty
+    sed "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml.template > deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SCRIPT_FIELD_SEPARATOR}|${SCRIPT_FIELD_SEPARATOR}|g" deployment/bouvier/patty-configmap-srv-sh.yaml
+    #selma
+    sed "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml.template > deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    sed -i '' "s|#{SCRIPT_FIELD_SEPARATOR}|${SCRIPT_FIELD_SEPARATOR}|g" deployment/bouvier/selma-configmap-srv-sh.yaml
+    #simpson
+    #homer
+    sed "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml.template > deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    sed -i '' "s|#{SCRIPT_FIELD_SEPARATOR}|${SCRIPT_FIELD_SEPARATOR}|g" deployment/simpson/homer-configmap-srv-sh.yaml
+    #marge
+    sed "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml.template > deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    sed -i '' "s|#{SCRIPT_FIELD_SEPARATOR}|${SCRIPT_FIELD_SEPARATOR}|g" deployment/simpson/marge-configmap-srv-sh.yaml
+    #burns
+    sed "s|#{BOUVIERPREFIX}|${BOUVIERPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml.template > deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{MARGEPREFIX}|${MARGEPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SIMPSONPREFIX}|${SIMPSONPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{HOMERPREFIX}|${HOMERPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SELMAPREFIX}|${SELMAPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{PATTYPREFIX}|${PATTYPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{MONTYPREFIX}|${MONTYPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{BURNSPREFIX}|${BURNSPREFIX}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    sed -i '' "s|#{SCRIPT_FIELD_SEPARATOR}|${SCRIPT_FIELD_SEPARATOR}|g" deployment/burns/monty-configmap-srv-sh.yaml
+    
+#fi
 
 # network policies
 envsubst < network-policies/01_default-deny-simpson.yaml.template > network-policies/01_default-deny-simpson.yaml

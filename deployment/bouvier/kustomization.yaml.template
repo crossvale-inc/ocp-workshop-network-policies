@@ -8,7 +8,9 @@ resources:
 - patty-deployment.yaml
 - patty-service.yaml
 - patty-route.yaml
+- patty-configmap-srv-sh.yaml
 - selma-deployment.yaml
 - selma-service.yaml
 - selma-route.yaml
+- selma-configmap-srv-sh.yaml
 

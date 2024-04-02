@@ -8,7 +8,9 @@ resources:
 - homer-deployment.yaml
 - homer-service.yaml
 - homer-route.yaml
+- homer-configmap-srv-sh.yaml
 - marge-deployment.yaml
 - marge-service.yaml
 - marge-route.yaml
+- marge-configmap-srv-sh.yaml
 

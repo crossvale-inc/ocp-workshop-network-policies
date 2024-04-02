@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-from-bouviers-to-marge
+  name: ${SIMPSONPREFIX}-allow-from-bouviers-to-marge
   namespace: ${SIMPSONPREFIX}
 spec:
   podSelector:

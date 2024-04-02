@@ -1,8 +1,8 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: ${SIMPSONPREFIX}-default-deny
-  namespace: ${SIMPSONPREFIX}
+  name: ${BOUVIERPREFIX}-default-deny
+  namespace: ${BOUVIERPREFIX}
 spec:
   podSelector: {}
   policyTypes:

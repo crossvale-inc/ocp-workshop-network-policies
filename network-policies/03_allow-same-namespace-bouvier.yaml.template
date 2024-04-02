@@ -1,8 +1,8 @@
 kind: NetworkPolicy
 apiVersion: networking.k8s.io/v1
 metadata:
-  name: ${SIMPSONPREFIX}-allow-same-namespace
-  namespace: ${SIMPSONPREFIX}
+  name: ${BOUVIERPREFIX}-allow-same-namespace
+  namespace: ${BOUVIERPREFIX}
 spec:
   podSelector: {}
   ingress:

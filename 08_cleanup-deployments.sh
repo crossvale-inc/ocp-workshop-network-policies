@@ -142,8 +142,12 @@ rm -f deployment/console-samples.yaml
 
 # network policies
 rm -f network-policies/01_default-deny-simpson.yaml
+rm -f network-policies/01_default-deny-bouvier.yaml
+rm -f network-policies/01_default-deny-burns.yaml
 rm -f network-policies/02_allow-from-openshift-ingress-simpson.yaml
 rm -f network-policies/03_allow-same-namespace-simpson.yaml
+rm -f network-policies/03_allow-same-namespace-bouvier.yaml
+rm -f network-policies/03_allow-same-namespace-burns.yaml
 rm -f network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
 rm -f network-policies/05_allow-from-burns-simpson.yaml
 

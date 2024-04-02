@@ -163,8 +163,12 @@ envsubst < deployment/console-samples.yaml.template > deployment/console-samples
 
 # network policies
 envsubst < network-policies/01_default-deny-simpson.yaml.template > network-policies/01_default-deny-simpson.yaml
+envsubst < network-policies/01_default-deny-bouvier.yaml.template > network-policies/01_default-deny-bouvier.yaml
+envsubst < network-policies/01_default-deny-burns.yaml.template > network-policies/01_default-deny-burns.yaml
 envsubst < network-policies/02_allow-from-openshift-ingress-simpson.yaml.template > network-policies/02_allow-from-openshift-ingress-simpson.yaml
 envsubst < network-policies/03_allow-same-namespace-simpson.yaml.template > network-policies/03_allow-same-namespace-simpson.yaml
+envsubst < network-policies/03_allow-same-namespace-bouvier.yaml.template > network-policies/03_allow-same-namespace-bouvier.yaml
+envsubst < network-policies/03_allow-same-namespace-burns.yaml.template > network-policies/03_allow-same-namespace-burns.yaml
 envsubst < network-policies/04_allow-from-bouviers-to-marge-simpson.yaml.template > network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
 envsubst < network-policies/05_allow-from-burns-simpson.yaml.template > network-policies/05_allow-from-burns-simpson.yaml
 

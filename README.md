@@ -1,21 +1,6 @@
----
-title: Network Policy Demo
-linktitle: Network Policy Demo
-weight: 16100
-description: Generall Network Policy Demo based on Simpsons
-tags:
- - demo
- - lab
- - netpol
- - NetworkPolicy
- - network
----
-
 # Network Policy Demo
 
-Official documentation: [About network policy
-](https://docs.openshift.com/container-platform/latest/networking/network_policy/about-network-policy.html)
-
+Official documentation: [About network policy](https://docs.openshift.com/container-platform/latest/networking/network_policy/about-network-policy.html)
 
 Based on a blog post done here - [Network Policy Demo](https://examples.openshift.pub/networking/network-policy/OpenShiftSDN/​)
 
@@ -24,34 +9,39 @@ Based on a blog post done here - [Network Policy Demo](https://examples.openshif
 
 ![demo overview](demo-overview-v2.png)
 
-## Deploy Environment
-
-=== "OC"
-
+## Prerequisites
 ```bash
-oc apply -k deployment/
+git clone https://github.com/crossvale-inc/ocp-workshop-network-policies
+cd ocp-workshop-network-policies
+# Enter your username when prompted to create namespaces prefixed with username E.g. chamilton-simpsons, chamilton-bouvier, etc.
+./00_prerequisites.sh
+```
+
+## Deploy Environment
+```bash
+# This will deploy the applications for Homer, Marge, Selma, Patty, Monty and Monitor to the prefixed namespaces respectively
+./01_start-deployments.sh
 ```
 
 ## Optional: Deploy OpenShift Console samples
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![OpenShift Console](ocp-console.png){ width="640" }
-
-=== "OC"
+![OpenShift Console](ocp-console.png)
 
 ```bash
-oc apply -f deployment/console-samples.yaml
+# Optional: This will deploy the Network Policy Samples related to the Simpson Lab.  This is not required to make the lab work.
+./01b_deploy-openshift-console-samples.sh
 ```
+## Start Monitoring Logs
 
-=== "console-samples.yaml"
+### Option 1) via Pod
+Watch logs:
 
-```yaml
-    --8<-- "content/networking/network-policy/network-policy-demo/deployment/console-samples.yaml"
+```bash
+# This will show the logs from the Network Monitor Pod
+./02_monitor-deployments.sh
 ```
-
-
-## Start Monitor
-
-### Option 1) Local tmux script
+<!---
+### Option 2) Local tmux script
 
 ```bash
 curl -L -O {{ page.canonical_url }}run-tmux.sh
@@ -64,117 +54,54 @@ WILDCARD_DOMAIN=$( oc get ingresscontroller/default -n openshift-ingress-operato
 sh run-tmux.sh $WILDCARD_DOMAIN
 ```
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![tmux](tmux-example.png){ width="640" }
+![tmux](tmux-example.png){ width="640" }
 
-### Option 2) via Pod 
+--->
 
-=== "OC"
-
+## Network Policy - Default Deny Namespaces
 ```bash
-oc apply -k deployment/monitor/
+# This will block any traffic to and from namespaces and within namespaces
+./03_default-deny-namespaces.sh
 ```
+<!---
+![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png)
+--->
 
-Watch logs:
+<!---
+## Network Policy - Allow from Ingress to Simpson Namespace
 
+![02_allow-from-openshift-ingress-simpson.png](02_allow-from-openshift-ingress-simpson.png){ width="640" }
+--->
+
+## Network Policy - Allow Same Namespaces
 ```bash
-oc logs --tail=1 -f deployment/monitor -n network-policy-demo-monitor
+# This will allow only traffic from the same namespace and block from outside the namespace
+./05_allow-same-namespaces.sh
 ```
+<!---
+![network-policies/03_allow-same-namespace-simpson.png](network-policies/03_allow-same-namespace-simpson.png){ width="640" }
+--->
 
-## Step 1) Default deny
-
-
-=== "OC"
-
+## Network Policy - Allow Bouviers Namespace to Marge Simpson Application
 ```bash
-oc apply -f network-policies/01_default-deny-simpson.yaml
+# This will allow only traffic from the Bouviers namespace to the Marge Simpson application in the Simpson namespace
+./06_allow-bouviers-to-marge-simpson.sh
 ```
+<!---
+![network-policies/04_allow-from-bouviers-to-marge-simpson.png](network-policies/04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
+--->
 
-=== "01_default-deny-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/01_default-deny-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/01_default-deny-simpson.png](network-policies/01_default-deny-simpson.png){ width="640" }
-
-## Step 2) Allow ingress
-
-
-=== "OC"
-
+## Network Policy - Allow Burns Namespace to Simpsons Namespace
 ```bash
-oc apply -f network-policies/02_allow-from-openshift-ingress-simpson.yaml
+# This will allow traffic from the Burns namespace to the Simpsons namespace
+./07_allow-burns-to-simpson.sh
 ```
+<!---
+![network-policies/05_allow-from-burns-simpson.png](network-policies/05_allow-from-burns-simpson.png){ width="640" }
+--->
 
-=== "network-policies/02_allow-from-openshift-ingress-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/02_allow-from-openshift-ingress-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![02_allow-from-openshift-ingress-simpson.png](02_allow-from-openshift-ingress-simpson.png){ width="640" }
-
-
-
-## Step 3) Allow ingress
-
-
-=== "OC"
-
+## Cleanup the Deployments
 ```bash
-oc apply -f network-policies/03_allow-same-namespace-simpson.yaml
+# This will delete the deployments in each of the namespaces, remove any artifacts that were deployed as well as delete any locally generated files
+./08_cleanup-deployments.sh
 ```
-
-=== "network-policies/03_allow-same-namespace-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/03_allow-same-namespace-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/03_allow-same-namespace-simpson.png](network-policies/03_allow-same-namespace-simpson.png){ width="640" }
-
-
-## Step 4) Allow from Bouviers to Marge Simpson
-
-
-=== "OC"
-
-```bash
-oc apply -f network-policies/04_allow-from-bouviers-to-marge-simpson.yaml
-```
-
-=== "network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/04_allow-from-bouviers-to-marge-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/04_allow-from-bouviers-to-marge-simpson.png](network-policies/04_allow-from-bouviers-to-marge-simpson.png){ width="640" }
-
-
-## Step 5) Allow from Burns to Simpson
-
-
-=== "OC"
-
-```bash
-oc apply -f network-policies/05_allow-from-burns-simpson.yaml
-```
-
-=== "network-policies/05_allow-from-burns-simpson.yaml"
-
-```yaml
---8<-- "content/networking/network-policy/network-policy-demo/network-policies/05_allow-from-burns-simpson.yaml"
-```
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![network-policies/05_allow-from-burns-simpson.png](network-policies/05_allow-from-burns-simpson.png){ width="640" }
-
-
-
-
-

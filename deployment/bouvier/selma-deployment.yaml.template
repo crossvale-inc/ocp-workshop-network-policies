@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${SELMAPREFIX}
+    app.kubernetes.io/component: ${SELMAPREFIX}
+    app.kubernetes.io/instance: ${SELMAPREFIX}
+    app.kubernetes.io/name: ${SELMAPREFIX}
+    app.kubernetes.io/part-of: ${SELMAPREFIX}
+    app.openshift.io/runtime: redhat
+  name: ${SELMAPREFIX}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${SELMAPREFIX}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ${SELMAPREFIX}
+        deployment: ${SELMAPREFIX}
+    spec:
+      volumes:
+        - name: ${SELMAPREFIX}-srv-sh
+          configMap:
+            name: ${SELMAPREFIX}-srv-sh
+            defaultMode: 0777
+      containers:
+      - image: quay.io/openshift-examples/simple-http-server:micro
+        imagePullPolicy: Always
+        name: http-server
+        volumeMounts:
+          - name: ${SELMAPREFIX}-srv-sh
+            mountPath: /www/
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}

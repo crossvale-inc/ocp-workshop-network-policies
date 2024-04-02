@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ${HOMERPREFIX}
+    app.kubernetes.io/component: ${HOMERPREFIX}
+    app.kubernetes.io/instance: ${HOMERPREFIX}
+    app.kubernetes.io/name: ${HOMERPREFIX}
+    app.kubernetes.io/part-of: ${HOMERPREFIX}
+    app.openshift.io/runtime-version: micro
+  name: ${HOMERPREFIX}
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ${HOMERPREFIX}
+    deployment: ${HOMERPREFIX}

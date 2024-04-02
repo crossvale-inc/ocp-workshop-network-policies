@@ -1,0 +1,9 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ${BURNSPREFIX}-default-deny
+  namespace: ${BURNSPREFIX}
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress

@@ -1,0 +1,125 @@
+kind: ConsoleYAMLSample
+apiVersion: console.openshift.io/v1
+metadata:
+  name: netpol-demo-simpson-default-deny
+spec:
+  targetResource:
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+  description: |
+      Default deny Network Policy
+  title: Simpson Demo - Default deny
+  yaml: |
+    kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: default-deny
+    spec:
+      podSelector: {}
+      policyTypes:
+      - Ingress
+---
+kind: ConsoleYAMLSample
+apiVersion: console.openshift.io/v1
+metadata:
+  name: netpol-demo-simpson-allow-from-openshift-ingress
+spec:
+  targetResource:
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+  description: |
+      Allow from ingress
+  title: Simpson Demo - Allow from ingress
+  yaml: |
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-openshift-ingress
+    spec:
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              network.openshift.io/policy-group: ingress
+      podSelector: {}
+      policyTypes:
+      - Ingress
+---
+kind: ConsoleYAMLSample
+apiVersion: console.openshift.io/v1
+metadata:
+  name: netpol-demo-simpson-allow-same-namespace
+spec:
+  targetResource:
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+  description: |
+      Allow same namespace
+  title: Simpson Demo - Allow same namespace
+  yaml: |
+    kind: NetworkPolicy
+    apiVersion: networking.k8s.io/v1
+    metadata:
+      name: allow-same-namespace
+    spec:
+      podSelector: {}
+      ingress:
+      - from:
+        - podSelector: {}
+      policyTypes:
+      - Ingress
+---
+kind: ConsoleYAMLSample
+apiVersion: console.openshift.io/v1
+metadata:
+  name: netpol-demo-simpson-allow-from-burns
+spec:
+  targetResource:
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+  description: |
+      Allow same namespace
+  title: Simpson Demo - Allow from Burns
+  yaml: |
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-burns
+    spec:
+      podSelector: {}
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ${BURNSPREFIX}
+      policyTypes:
+      - Ingress
+---
+kind: ConsoleYAMLSample
+apiVersion: console.openshift.io/v1
+metadata:
+  name: netpol-demo-simpson-allow-from-bouviers-to-marge
+spec:
+  targetResource:
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+  description: |
+      Simpson Demo - Allow from Bouviers to Marge
+  title: Simpson Demo - Allow from Bouviers to Marge
+  yaml: |
+    apiVersion: networking.k8s.io/v1
+    kind: NetworkPolicy
+    metadata:
+      name: allow-from-bouviers-to-marge
+      namespace: ${SIMPSONPREFIX}
+    spec:
+      podSelector:
+        matchLabels:
+          deployment: ${MARGEPREFIX}
+      ingress:
+      - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ${BOUVIERPREFIX}
+      policyTypes:
+      - Ingress

@@ -1,0 +1,22 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: ${PATTYPREFIX}
+    app.kubernetes.io/component: ${PATTYPREFIX}
+    app.kubernetes.io/instance: ${PATTYPREFIX}
+    app.kubernetes.io/name: ${PATTYPREFIX}
+    app.kubernetes.io/part-of: ${PATTYPREFIX}
+    app.openshift.io/runtime-version: micro
+  name: ${PATTYPREFIX}
+spec:
+  port:
+    targetPort: 8080-tcp
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: ${PATTYPREFIX}
+    weight: 100
+  wildcardPolicy: None

@@ -1,0 +1,99 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${MONPREFIX}
+  labels:
+    app: ${MONPREFIX}
+    app.openshift.io/runtime: openshift
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: ${MONPREFIX}
+  template:
+    metadata:
+      labels:
+        app: ${MONPREFIX}
+    spec:
+      volumes:
+        - name: docroot
+          emptyDir: {}
+        - name: netpol-monitor-html
+          configMap:
+            name: netpol-monitor-html
+      serviceAccountName: ${MONPREFIX}
+      automountServiceAccountToken: true
+      containers:
+      - image:  image-registry.openshift-image-registry.svc:5000/openshift/cli:latest
+        name: ${MONPREFIX}
+        volumeMounts:
+          - name: docroot
+            mountPath: /docroot/
+          - name: netpol-monitor-html
+            mountPath: /netpol-monitor-html/
+        securityContext:
+          readOnlyRootFilesystem: false
+          allowPrivilegeEscalation: false
+        # resources:
+        #   limits:
+        #     ephemeral-storage: 40Mi
+        #     cpu: 0.1
+        #     memory: "20Mi"
+        #   requests:
+        #     ephemeral-storage: 20Mi
+        #     cpu: 0.1
+        #     memory: "20Mi"
+        command:
+          - /bin/sh
+          - -c
+          - |
+
+            export HOMER_URL=$( oc get route -n ${SIMPSONPREFIX} ${HOMERPREFIX} -o jsonpath="{.spec.host}" )
+            export MARGE_URL=$( oc get route -n ${SIMPSONPREFIX} ${MARGEPREFIX} -o jsonpath="{.spec.host}" )
+            export SELMA_URL=$( oc get route -n ${BOUVIERPREFIX} ${SELMAPREFIX} -o jsonpath="{.spec.host}" )
+            export PATTY_URL=$( oc get route -n ${BOUVIERPREFIX} ${PATTYPREFIX} -o jsonpath="{.spec.host}" )
+            export MONTY_URL=$( oc get route -n ${BURNSPREFIX} ${MONTYPREFIX} -o jsonpath="{.spec.host}" )
+
+            while true; do
+                echo "# =========================================================="
+                echo -n "# "; date
+                curl -s -k https://${DUMMY}{HOMER_URL}/demo
+                curl -s -k https://${DUMMY}{MARGE_URL}/demo
+                curl -s -k https://${DUMMY}{SELMA_URL}/demo
+                curl -s -k https://${DUMMY}{PATTY_URL}/demo
+                curl -s -k https://${DUMMY}{MONTY_URL}/demo
+
+                sh /netpol-monitor-html/update-html.sh  > /docroot/index.html.new
+                cp -v /docroot/index.html.new /docroot/index.html
+
+                sleep 5;
+            done;
+
+      - image: registry.access.redhat.com/ubi9/nginx-122:latest
+        name: nginx
+        ports:
+          - name: http
+            containerPort: 8080
+        securityContext:
+          readOnlyRootFilesystem: false
+        resources:
+          limits:
+            ephemeral-storage: 40Mi
+            cpu: 0.5
+            memory: "256Mi"
+          requests:
+            ephemeral-storage: 20Mi
+            cpu: 0.5
+            memory: "256Mi"
+        volumeMounts:
+          - name: docroot
+            mountPath: /opt/app-root/src/
+        command:
+          - /bin/sh
+          - -c
+          - |
+
+            /usr/libexec/s2i/run

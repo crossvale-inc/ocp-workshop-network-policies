@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ${SELMAPREFIX}
+    app.kubernetes.io/component: ${SELMAPREFIX}
+    app.kubernetes.io/instance: ${SELMAPREFIX}
+    app.kubernetes.io/name: ${SELMAPREFIX}
+    app.kubernetes.io/part-of: ${SELMAPREFIX}
+    app.openshift.io/runtime-version: micro
+  name: ${SELMAPREFIX}
+spec:
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: ${SELMAPREFIX}
+    deployment: ${SELMAPREFIX}

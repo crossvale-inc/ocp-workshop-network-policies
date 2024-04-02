@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ${SIMPSONPREFIX}-allow-from-bouviers-to-marge
+  namespace: ${SIMPSONPREFIX}
+spec:
+  podSelector:
+    matchLabels:
+      deployment: ${MARGEPREFIX}
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: ${BOUVIERPREFIX}
+  policyTypes:
+  - Ingress

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${HOMERPREFIX}
+    app.kubernetes.io/component: ${HOMERPREFIX}
+    app.kubernetes.io/instance: ${HOMERPREFIX}
+    app.kubernetes.io/name: ${HOMERPREFIX}
+    app.kubernetes.io/part-of: ${HOMERPREFIX}
+    app.openshift.io/runtime: redhat
+  name: ${HOMERPREFIX}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${HOMERPREFIX}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ${HOMERPREFIX}
+        deployment: ${HOMERPREFIX}
+    spec:
+      volumes:
+        - name: ${HOMERPREFIX}-srv-sh
+          configMap:
+            name: ${HOMERPREFIX}-srv-sh
+            defaultMode: 0777
+      containers:
+      - image: quay.io/openshift-examples/simple-http-server:micro
+        imagePullPolicy: Always
+        name: http-server
+        volumeMounts:
+          - name: ${HOMERPREFIX}-srv-sh
+            mountPath: /www/
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ${MONTYPREFIX}
+    app.kubernetes.io/component: ${MONTYPREFIX}
+    app.kubernetes.io/instance: ${MONTYPREFIX}
+    app.kubernetes.io/name: ${MONTYPREFIX}
+    app.kubernetes.io/part-of: ${MONTYPREFIX}
+    app.openshift.io/runtime: redhat
+  name: ${MONTYPREFIX}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${MONTYPREFIX}
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ${MONTYPREFIX}
+        deployment: ${MONTYPREFIX}
+    spec:
+      volumes:
+        - name: ${MONTYPREFIX}-srv-sh
+          configMap:
+            name: ${MONTYPREFIX}-srv-sh
+            defaultMode: 0777
+      containers:
+      - image: quay.io/openshift-examples/simple-http-server:micro
+        imagePullPolicy: Always
+        name: http-server
+        volumeMounts:
+          - name: ${MONTYPREFIX}-srv-sh
+            mountPath: /www/
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
